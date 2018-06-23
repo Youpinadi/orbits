@@ -115,7 +115,7 @@ class App extends Component {
           <DatNumber
             path="speed"
             label="speed first ball"
-            min={0}
+            min={-3}
             max={3}
             step={0.1}
           />
@@ -130,7 +130,7 @@ class App extends Component {
           <DatNumber
             path="speed2"
             label="speed second ball"
-            min={0}
+            min={-3}
             max={3}
             step={0.1}
           />
