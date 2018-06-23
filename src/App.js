@@ -11,6 +11,7 @@ class App extends Component {
     super(props);
     const { innerWidth, innerHeight } = window;
     this.state = {
+      drawPlanets: true,
       clearBeforeDraw: false,
       color: Konva.Util.getRandomColor(),
       cx: innerWidth / 2,
@@ -74,7 +75,16 @@ class App extends Component {
   update = data => this.setState(data);
 
   render() {
-    const { x, y, x2, y2, radius, color, clearBeforeDraw } = this.state;
+    const {
+      x,
+      y,
+      x2,
+      y2,
+      radius,
+      color,
+      clearBeforeDraw,
+      drawPlanets
+    } = this.state;
     const { innerWidth, innerHeight } = window;
     return (
       <div>
@@ -87,10 +97,12 @@ class App extends Component {
               strokeWidth={0.1}
             />
           </FastLayer>
-          <FastLayer>
-            <Circle x={x} y={y} radius={5} fill="red" />
-            <Circle x={x2} y={y2} radius={5} fill="blue" />
-          </FastLayer>
+          {drawPlanets ? (
+            <FastLayer>
+              <Circle x={x} y={y} radius={5} fill="red" />
+              <Circle x={x2} y={y2} radius={5} fill="blue" />
+            </FastLayer>
+          ) : null}
         </Stage>
         <DatGui data={this.state} onUpdate={this.update}>
           <DatNumber
@@ -124,7 +136,8 @@ class App extends Component {
           />
           <DatColor path="color" label="Color" />
           <DatBoolean path="clearBeforeDraw" label="clearBeforeDraw" />
-          <DatBoolean path="pause" label="pause?" />
+          <DatBoolean path="pause" label="pause" />
+          <DatBoolean path="drawPlanets" label="drawPlanets" />
         </DatGui>
       </div>
     );
